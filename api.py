@@ -1,15 +1,12 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi.params import Body
 app = FastAPI()
 
-class MessageModel(BaseModel):
-    message: str
 
 @app.post("/sent")
-async def message(messageContent: MessageModel):
-    message = messageContent.message
+async def message(data: dict = Body(...)):
     return {
-        "msg": message
+        {data['msg']}
     }
 
 @app.get("/request")
