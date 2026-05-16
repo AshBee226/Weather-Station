@@ -8,7 +8,7 @@ function jsonConvert() {
     let data = {
         "msg":message.value
     }
-    fetch('http://127.0.0.1:8000/sent', {
+    fetch('http://192.168.1.94:8000/sent', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

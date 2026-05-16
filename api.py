@@ -9,7 +9,7 @@ class Message(BaseModel):
 origins = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:5500",
-    "http://192.168.1.208",
+    "http://192.168.1.94",
 ]
 
 app.add_middleware(
@@ -32,7 +32,3 @@ async def message():
         "msg": "message"
     }
 
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="127.0.0.1", port=8000)
