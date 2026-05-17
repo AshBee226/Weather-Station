@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
+latest_message = ""
+
 class Message(BaseModel):
     message: str
 
@@ -22,6 +24,10 @@ app.add_middleware(
 
 @app.post("/sent")
 async def post_message(msg_body: Message):
+    global latest_message 
+
+    latest_message = msg_body.message
+
     return {
         "msg": msg_body.message
         }
@@ -32,5 +38,14 @@ async def message():
         "msg": "message"
     }
 
+@app.get("/get-data")
+async def getdata():
+    return {
+        "data": latest_message
+    }
 
+#if __name__ == "__main__":
+    #import uvicorn
+
+    #uvicorn.run(app, host="192.168.1.76", port=8000)
 
