@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import mysql.connector
 app = FastAPI()
 
 latest_message = ""
+previous_message = ""
 
 class Message(BaseModel):
     message: str
@@ -13,6 +15,17 @@ origins = [
     "http://127.0.0.1:5500",
     "http://192.168.1.94",
 ]
+
+msgDB = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="1234",
+    database = "messages"
+)
+
+
+cursor = msgDB.cursor(buffered=True)
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -40,12 +53,27 @@ async def message():
 
 @app.get("/get-data")
 async def getdata():
+    global previous_message
+    if latest_message != "" and latest_message != previous_message:
+        sql = ( 
+        "INSERT INTO recievedmessages (message) " 
+        "VALUES (%s)"
+        )
+        val = (latest_message,)
+        cursor.execute(sql,val)
+
+        msgDB.commit()
+    
+    previous_message = latest_message
+
     return {
         "data": latest_message
     }
 
-#if __name__ == "__main__":
-    #import uvicorn
+    
 
-    #uvicorn.run(app, host="192.168.1.76", port=8000)
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="192.168.1.105", port=8000)
 

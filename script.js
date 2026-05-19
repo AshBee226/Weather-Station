@@ -31,7 +31,7 @@ function jsonConvert() {
 
 
 function changeText() {
-    fetch("http://192.168.1.94:8000/get-data")
+    fetch("http://192.168.1.105:8000/get-data")
     .then(response => response.json())
     .then(data => text.innerHTML = data.data)
     }
