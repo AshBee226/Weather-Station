@@ -14,6 +14,20 @@
             "database": "messages",
             "username": "root",
             "password": "1234"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "192.168.1.94",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "server",
+            "database": "recievedMessages",
+            "username": "ashbee"
         }
     ]
 }

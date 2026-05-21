@@ -17,10 +17,10 @@ origins = [
 ]
 
 msgDB = mysql.connector.connect(
-    host="localhost",
-    user="root",
+    host="192.168.1.94",
+    user="ashbee",
     password="1234",
-    database = "messages"
+    database = "recievedMessages"
 )
 
 
