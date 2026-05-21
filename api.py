@@ -18,6 +18,7 @@ origins = [
 
 msgDB = mysql.connector.connect(
     host="192.168.1.94",
+    port=3306,
     user="ashbee",
     password="1234",
     database = "recievedMessages"
@@ -56,7 +57,7 @@ async def getdata():
     global previous_message
     if latest_message != "" and latest_message != previous_message:
         sql = ( 
-        "INSERT INTO recievedmessages (message) " 
+        "INSERT INTO recievedMessages (message) " 
         "VALUES (%s)"
         )
         val = (latest_message,)
