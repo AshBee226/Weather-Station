@@ -57,7 +57,7 @@ async def getdata():
     global previous_message
     if latest_message != "" and latest_message != previous_message:
         sql = ( 
-        "INSERT INTO recievedMessages (message) " 
+        "INSERT INTO recievedMessages (tempreture) " 
         "VALUES (%s)"
         )
         val = (latest_message,)
@@ -77,4 +77,3 @@ async def getdata():
     #import uvicorn
 
     #uvicorn.run(app, host="192.168.1.105", port=8000)
-

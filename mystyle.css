@@ -1,9 +1,9 @@
 body {
-  background-color: rgb(9, 110, 5);
+  background-color: rgb(255, 140, 45);
 }
 
 h1 {
-  color: rgb(16, 16, 185);
+  color: rgb(0, 0, 255);
   margin-left: 20px;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -26,3 +26,8 @@ p {
   font-size: 100px;
 
 }
+
+
+/* Hotter:(243, 109, 0) <30
+
+Hot:(255, 140, 45) 25-30
