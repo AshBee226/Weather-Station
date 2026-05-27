@@ -8,7 +8,7 @@ latest_message = ""
 previous_message = ""
 
 class Message(BaseModel):
-    message: str
+    message: float
 
 origins = [
     "http://127.0.0.1:8000",
