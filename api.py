@@ -4,11 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 import mysql.connector
 app = FastAPI()
 
-latest_message = ""
-previous_message = ""
+latest_message = 0.0
+previous_message = 0.0
 
 class Message(BaseModel):
-    message: str
+    message: float
 
 origins = [
     "http://127.0.0.1:8000",
@@ -46,19 +46,13 @@ async def post_message(msg_body: Message):
         "msg": msg_body.message
         }
 
-@app.get("/request")
-async def message():
-    return {
-        "msg": "message"
-    }
-
 @app.get("/get-data")
 async def getdata():
     global previous_message
     if latest_message != "" and latest_message != previous_message:
         sql = ( 
-        "INSERT INTO recievedMessages (tempreture) " 
-        "VALUES (%s)"
+        "INSERT INTO recievedMessages (tempreture, date, time) " 
+        "VALUES (%s,CURDATE(), CURTIME())"
         )
         val = (latest_message,)
         cursor.execute(sql,val)
