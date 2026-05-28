@@ -4,6 +4,11 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
+const int temperatureWire = 4;
+
+OneWire oneWire(temperatureWire);
+DallasTemperature sensors(&oneWire);
+
 DynamicJsonDocument doc(2048);
 
 
@@ -19,6 +24,8 @@ unsigned long timerDelay = 5000; //change to 60000 for 1 minute
 void setup() {
   Serial.begin(9600);
 
+  sensors.begin();
+
   WiFi.begin(ssid, password);
   Serial.println("Connecting");
   while (WiFi.status() != WL_CONNECTED) {
@@ -30,19 +37,18 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   Serial.println("Timer set to 5 seconds");
-}-
+}
 
 void loop() {
 
-  while(Serial.available() == 0) {
-  }
-
-  String message = Serial.readString();
-  message.replace("\n", "");
-
-  doc["message"] = message;
-
   if ((millis() - lastTime) > timerDelay) {
+    sensors.requestTemperatures();
+
+    float message = sensors.getTempCByIndex(0);
+
+    doc["message"] = message;
+    delay(1000);
+    
     Serial.println("5s");
     if (WiFi.status() == WL_CONNECTED) {
       WiFiClient client;
