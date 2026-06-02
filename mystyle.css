@@ -1,33 +1,49 @@
 body {
-  background-color: rgb(255, 140, 45);
+  background-color: rgb(144, 96, 141);
 }
 
 h1 {
-  color: rgb(0, 0, 255);
-  margin-left: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-#mybtn {
   color: rgb(0, 0, 0);
-  background-color: blueviolet;
-
-  display: block;
-  margin: 0 auto;
-
-  width: 500px;
-  height: 300px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 10px;
+  border-style: solid;
+  border-color: black;
+  font-size: 60px;
 }
 
-p {
-  color: black;
-
+#mainDisplay {
+  display: grid;
+  justify-content: center;
+  align-content: center;
   text-align: center;
   font-size: 100px;
-
 }
 
+#mainTemp {
+  margin-top: 10px;
+  margin-bottom: 90px;
+  font-size: 200px;
+}
 
-/* Hotter:(243, 109, 0) <30
+.labels {
+  border: 3px solid black;
+  font-size: 50px;
+  display: grid;
+  grid-column-start:1;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-template-rows: 2;
+  justify-content: space-around;
+}
 
-Hot:(255, 140, 45) 25-30
+#row1 {
+  display: grid;
+  grid-row: 1;
+  grid-column: 1;
+  justify-content: center;
+}
+
+.column {
+  display: grid;
+  text-align: center;
+}

@@ -1,7 +1,7 @@
 -- @block
 CREATE TABLE recievedMessages(
     id int AUTO_INCREMENT PRIMARY KEY,
-    tempreture VARCHAR(255),
+    temperature VARCHAR(255),
     date VARCHAR(255),
     time VARCHAR(255)
 );
@@ -11,9 +11,9 @@ DROP TABLE recievedMessages;
 
 
 -- @block
-INSERT INTO recievedMessages (tempreture, date, time)
+INSERT INTO recievedMessages (temperature, date, time)
 VALUES (
-    "hello", CURDATE(), CURTIME()
+    "5", CURDATE(), CURTIME()
 );
 
 

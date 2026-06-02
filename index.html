@@ -1,33 +1,107 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
 <link rel="stylesheet" href="mystyle.css">
 </head>
 
-<body>
+<body id="body">
+
+    <div id="mainDisplay">
+        <h1>
+            Weather 
+        </h1>
+
+        <p>
+            The current Temperature is
+        </p>
+
+        <p class="currentTemp" id="mainTemp">
+            0
+        </p>
+    </div>
+
+    <div class="labels">
+
+        <div class="column">
+                <p id="monday">
+                    Monday
+                </p>
+
+                <p id="-3Days">
+                    12
+                </p>
+
+            </div>
+
+            <div class="column">
+                <p id="tuesday">
+                    Tuesday
+                </p>
+                
+                <p id="-2Days">
+                    12
+                </p>
+
+            </div>
+
+            <div class="column">
+                <p id="wednesday">
+                    Wednesday
+                </p>
+
+                <p id="-1Days">
+                    12
+                </p>
+
+            </div>
+
+            <div class="column">
+                <p id="thursday">
+                    Thursday
+                </p>
+
+                 <p class="currentTemp">
+                    12
+                </p>
+                
+            </div>
+
+            <div class="column">
+                <p id="friday">
+                    Friday
+                </p>
+
+                <p id="+1Days">
+                    12
+                </p>
+
+            </div>
+
+            <div class="column">
+                <p id="saturday">
+                    Saturday
+                </p>
+
+                <p id="+2Days" title="Hello">
+                    12
+                </p>
+
+            </div>
+
+            <div class="column">
+                <p id="sunday">
+                    Sunday
+                </p>
+
+                <p id="+3Days">
+                    12
+                </p>
+
+            </div>
 
 
-    <h1>
-        My heading 
-    </h1>
-
-    <button id="mybtn">
-        Click Me 
-    </button>
-
-
-    <input type="text" id="message">
-    <br>
-    <button id="JSONbtn">
-        Convert
-    </button>
-
-    <p id="text">
-        This will change
-    </p>
-
-    <script src="script.js">
+    <script src="script.js" type="module">
 
     </script>
 </body>

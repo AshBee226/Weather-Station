@@ -4,8 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import mysql.connector
 app = FastAPI()
 
-latest_message = 0.0
-previous_message = 0.0
+latest_message = 5
 
 class Message(BaseModel):
     message: float
@@ -16,12 +15,23 @@ origins = [
     "http://192.168.1.94",
 ]
 
+days_of_the_week = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+]
+
+
 msgDB = mysql.connector.connect(
-    host="192.168.1.94",
+    host="localhost",
     port=3306,
-    user="ashbee",
+    user="root",
     password="1234",
-    database = "recievedMessages"
+    database = "messages"
 )
 
 
@@ -38,18 +48,11 @@ app.add_middleware(
 
 @app.post("/sent")
 async def post_message(msg_body: Message):
-    global latest_message 
+    global latest_message
 
     latest_message = msg_body.message
 
-    return {
-        "msg": msg_body.message
-        }
-
-@app.get("/get-data")
-async def getdata():
-    global previous_message
-    if latest_message != "" and latest_message != previous_message:
+    if latest_message != "":
         sql = ( 
         "INSERT INTO recievedMessages (tempreture, date, time) " 
         "VALUES (%s,CURDATE(), CURTIME())"
@@ -58,16 +61,46 @@ async def getdata():
         cursor.execute(sql,val)
 
         msgDB.commit()
-    
-    previous_message = latest_message
 
     return {
-        "data": latest_message
+        "msg": msg_body.message
+        }
+
+@app.get("/get-data")
+async def getdata():
+
+    sql_time = "SELECT time FROM recievedMessages WHERE temperature = %s ORDER BY id DESC"
+    temp = (latest_message,)
+
+    cursor.execute(sql_time, temp)
+
+    time = cursor.fetchone()
+    time = time[0]
+
+    sql_date = "SELECT date FROM recievedMessages WHERE temperature = %s ORDER BY id DESC"
+    cursor.execute(sql_date, temp)
+
+    date = cursor.fetchone()
+
+    sql_day = ("SELECT WEEKDAY(%s)")
+    date = (date[0],)
+    cursor.execute(sql_day,date)
+    
+    day_num = cursor.fetchone()[0]
+    day = days_of_the_week[day_num]
+    print(day)
+        
+
+    return {
+        "temp": int(latest_message),
+        "time": time,
+        "day": day
     }
 
-    
 
-#if __name__ == "__main__":
-    #import uvicorn
 
-    #uvicorn.run(app, host="192.168.1.105", port=8000)
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="192.168.1.105", port=8000)
