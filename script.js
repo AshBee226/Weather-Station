@@ -2,13 +2,13 @@ import {
     tempThemes
 } from "./tempThemes.js"
 
-let message = document.getElementById("message")
 let currentTemp = document.getElementsByClassName("currentTemp")
+let currentDay = document.getElementById("currentDay")
 let body = document.getElementById("body")
 
-let temperature = 0;
+let temperature = [];
 let time = "00:00:00"
-let day = ""
+let daysAround = ""
 
 
 function jsonConvert() {
@@ -35,19 +35,35 @@ function jsonConvert() {
 
 
 function changeText() {
-    fetch("http://192.168.1.105:8000/get-data")
+    fetch("http://192.168.1.216:8000/get-data")
     .then(response => response.json())
     .then(data => {
-    temperature = data.temp
+    temperature = data.temps
     time = data.time
-    day = data.day
+    daysAround = data.daysAround
     })
     console.log(temperature)
     console.log(time)
-    console.log(day)
+    console.log(daysAround)
+
+    document.getElementById("-3Days").innerHTML = daysAround[0]
+    document.getElementById("-2Days").innerHTML = daysAround[1]
+    document.getElementById("-1Days").innerHTML = daysAround[2]
+    currentDay.innerHTML = "Today"
+    document.getElementById("+1Days").innerHTML = daysAround[4]
+    document.getElementById("+2Days").innerHTML = daysAround[5]
+    document.getElementById("+3Days").innerHTML = daysAround[6]
+
+    document.getElementById("-3Days_temp").innerHTML = temperature[0] + "°C"
+    document.getElementById("-2Days_temp").innerHTML = temperature[1] + "°C"
+    document.getElementById("-1Days_temp").innerHTML = temperature[2] + "°C"
+
+
+
+
 
     for(var i=0; i<currentTemp.length; i++) {
-        currentTemp[i].innerHTML = temperature + "°C"
+        currentTemp[i].innerHTML = temperature[3] + "°C"
     }
 
     Math.round(temperature)
