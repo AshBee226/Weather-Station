@@ -27,7 +27,8 @@
             "driver": "MySQL",
             "name": "server",
             "database": "recievedMessages",
-            "username": "ashbee"
+            "username": "ashbee",
+            "askForPassword": true
         }
     ]
 }

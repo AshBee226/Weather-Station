@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import mysql.connector
 app = FastAPI()
 
-latest_message = 9
+latest_message = 37
 
 class Message(BaseModel):
     message: float
@@ -58,11 +58,13 @@ def findTemps(date):
         sql_3before_statement = "SELECT DATE_SUB(%s, INTERVAL %s DAY)"
         data = (date, i)
         cursor.execute(sql_3before_statement, data)
+        date_sub = cursor.fetchone()
+
         
         sql_temp_3before = "SELECT temperature FROM recievedMessages WHERE date = %s ORDER BY id DESC"
-        date3 = cursor.fetchone()
-        cursor.execute(sql_temp_3before, date3)
-        sql_temp_3before = cursor.fetchall()       
+        cursor.execute(sql_temp_3before, date_sub)
+        sql_temp_3before = cursor.fetchall()
+        print(sql_temp_3before)       
 
         for i in range(len(sql_temp_3before)):
             total = total + int(sql_temp_3before[i][0])
@@ -116,9 +118,12 @@ async def getdata():
     day_num = cursor.fetchone()[0]
     day = days_of_the_week[day_num]
     print(day)
+    print(date[0])
 
     if day == "Monday":
+        daysAround = ["Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"]
         temp = findTemps(date[0])
+
     elif day == "Tuesday":
         daysAround = ["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"]
         temp = findTemps(date[0])
@@ -159,7 +164,7 @@ async def getdata():
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="192.168.1.216", port=8000)
+    uvicorn.run(app, host="192.168.1.222", port=8000)
 
 
 

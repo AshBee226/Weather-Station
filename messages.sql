@@ -13,7 +13,7 @@ DROP TABLE recievedMessages;
 -- @block
 INSERT INTO recievedMessages (temperature, date, time)
 VALUES (
-    "4", "2026-06-17", CURTIME()
+    "34", CURDATE(), CURTIME()
 );
 
 
