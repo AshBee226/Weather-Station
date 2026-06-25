@@ -35,7 +35,7 @@ function jsonConvert() {
 
 
 function changeText() {
-    fetch("http://192.168.1.216:8000/get-data")
+    fetch("http://192.168.1.94:8000/get-data")
     .then(response => response.json())
     .then(data => {
     temperature = data.temps

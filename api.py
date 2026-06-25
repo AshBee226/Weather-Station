@@ -27,11 +27,11 @@ days_of_the_week = [
 
 
 msgDB = mysql.connector.connect(
-    host="localhost",
+    host="192.168.1.94",
     port=3306,
-    user="root",
+    user="ashbee",
     password="1234",
-    database = "messages"
+    database = "recievedMessages"
 )
 
 
