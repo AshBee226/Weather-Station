@@ -11,6 +11,7 @@ class Message(BaseModel):
 
 origins = [
     "http://192.168.0.94"
+    "http://127.0.0.1"
 ]
 
 days_of_the_week = [

@@ -46,6 +46,7 @@ function changeText() {
     console.log(time)
     console.log(daysAround)
 
+ 
     document.getElementById("-3Days").innerHTML = daysAround[0]
     document.getElementById("-2Days").innerHTML = daysAround[1]
     document.getElementById("-1Days").innerHTML = daysAround[2]
@@ -57,7 +58,7 @@ function changeText() {
     document.getElementById("-3Days_temp").innerHTML = temperature[0] + "°C"
     document.getElementById("-2Days_temp").innerHTML = temperature[1] + "°C"
     document.getElementById("-1Days_temp").innerHTML = temperature[2] + "°C"
-
+    
 
 
 
@@ -76,4 +77,4 @@ function changeText() {
 
 
 
-setInterval(changeText, 5000)
+setInterval(changeText, 1000)
