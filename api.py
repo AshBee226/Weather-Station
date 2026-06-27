@@ -10,7 +10,7 @@ class Message(BaseModel):
     message: float
 
 origins = [
-    "http://192.168.0.94"
+    "http://192.168.0.94",
     "http://127.0.0.1"
 ]
 
