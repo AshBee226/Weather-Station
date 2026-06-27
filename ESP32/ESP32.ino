@@ -11,11 +11,8 @@ DallasTemperature sensors(&oneWire);
 
 DynamicJsonDocument doc(2048);
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> ff3ae95ddbfcfcec3c6f4b989cfc20d49d052043
 const char* serverName = "http://192.168.1.94:8000/sent";
 
 unsigned long lastTime = 0;

@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import mysql.connector
 app = FastAPI()
 
-latest_message = 37
+latest_message = 25
 
 class Message(BaseModel):
     message: float

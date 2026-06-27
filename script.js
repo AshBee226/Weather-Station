@@ -66,8 +66,7 @@ function changeText() {
         currentTemp[i].innerHTML = temperature[3] + "°C"
     }
 
-    Math.round(temperature)
-    document.body.style.backgroundImage = tempThemes[temperature+5] 
+    document.body.style.backgroundImage = tempThemes[temperature[3]+5] 
     if (temperature[3] >= 30) {
         document.body.style.backgroundColor = "rgb(243, 109, 0)"
     } else if (temperature[3] <= -5) {
