@@ -11,10 +11,6 @@ DallasTemperature sensors(&oneWire);
 
 DynamicJsonDocument doc(2048);
 
-
-const char* ssid = "ZTE_2.4G_PCJnGt";
-const char* password = "7jU3c4zK";
-
 const char* serverName = "http://192.168.1.94:8000/sent";
 
 unsigned long lastTime = 0;

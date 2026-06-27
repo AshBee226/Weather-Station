@@ -15,7 +15,7 @@ function jsonConvert() {
     let data = {
         "msg": 1.0
     }
-    fetch('http://192.168.1.94:8000/sent', {
+    fetch('http://192.168.0.94:8000/sent', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ function jsonConvert() {
 
 
 function changeText() {
-    fetch("http://192.168.1.94:8000/get-data")
+    fetch("http://192.168.0.94:8000/get-data")
     .then(response => response.json())
     .then(data => {
     temperature = data.temps
@@ -68,9 +68,9 @@ function changeText() {
 
     Math.round(temperature)
     document.body.style.backgroundImage = tempThemes[temperature+5] 
-    if (temperature >= 30) {
+    if (temperature[3] >= 30) {
         document.body.style.backgroundColor = "rgb(243, 109, 0)"
-    } else if (temperature <= -5) {
+    } else if (temperature[3] <= -5) {
         document.body.style.backgroundColor = "rgb(69, 87, 247)"
     }
 }

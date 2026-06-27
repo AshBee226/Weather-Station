@@ -10,9 +10,7 @@ class Message(BaseModel):
     message: float
 
 origins = [
-    "http://127.0.0.1:8000",
-    "http://127.0.0.1:5500",
-    "http://192.168.1.94",
+    "http://192.168.0.94"
 ]
 
 days_of_the_week = [
@@ -27,7 +25,7 @@ days_of_the_week = [
 
 
 msgDB = mysql.connector.connect(
-    host="192.168.1.94",
+    host="192.168.0.94",
     port=3306,
     user="ashbee",
     password="1234",
@@ -164,7 +162,7 @@ async def getdata():
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="192.168.1.222", port=8000)
+    uvicorn.run(app, host="192.168.0.11", port=8000)
 
 
 
